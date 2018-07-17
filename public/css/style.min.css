@@ -254,11 +254,13 @@ img[data-object-fit="contain"] {
 	opacity: 0;
 }
 
-.b-pantone:hover::before {
-	opacity: 1;
+.b-pantone:not(._active):hover { /*&::before
+      opacity: 1;*/
+	-webkit-animation: pulse-shadow 1.4s infinite;
+	animation: pulse-shadow 1.4s infinite;
 }
 
-.b-pantone:hover > svg {
+.b-pantone:not(._active):hover > svg {
 	opacity: 1;
 }
 
@@ -930,6 +932,44 @@ img[data-object-fit="contain"] {
 .l-examples__link-icon > svg {
 	width: 14px;
 	height: 14px;
+}
+
+}
+
+@-webkit-keyframes pulse-shadow {
+
+0% {
+	-webkit-box-shadow: 0 0;
+	box-shadow: 0 0;
+}
+
+70% {
+	-webkit-box-shadow: 0 0 5px 10px rgba(255,255,255,0);
+	box-shadow: 0 0 5px 10px rgba(255,255,255,0);
+}
+
+100% {
+	-webkit-box-shadow: 0 0 0 0 rgba(255,255,255,0);
+	box-shadow: 0 0 0 0 rgba(255,255,255,0);
+}
+
+}
+
+@keyframes pulse-shadow {
+
+0% {
+	-webkit-box-shadow: 0 0;
+	box-shadow: 0 0;
+}
+
+70% {
+	-webkit-box-shadow: 0 0 5px 10px rgba(255,255,255,0);
+	box-shadow: 0 0 5px 10px rgba(255,255,255,0);
+}
+
+100% {
+	-webkit-box-shadow: 0 0 0 0 rgba(255,255,255,0);
+	box-shadow: 0 0 0 0 rgba(255,255,255,0);
 }
 
 }
