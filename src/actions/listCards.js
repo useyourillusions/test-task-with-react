@@ -1,5 +1,4 @@
-//import {filterCondition} from "./filter";
-import cards from '../cards.json';
+import axios from 'axios';
 
 export function cardsLoaded(array) {
     return {
@@ -15,18 +14,24 @@ export function cardsLoading(bool) {
     };
 }
 
-export function loadingError(bool) {
+export function loadingError(object) {
     return {
         type: 'CARDS_LOADING_ERROR',
-        payload: bool
+        payload: object
     };
 }
 
 export function getCards() {
     return (dispatch) => {
-        setTimeout(() => {
-            // localStorage.setItem('cards', cards.cards);
-            dispatch(cardsLoaded(cards.cards));
-        }, 2000);
+        axios.get('http://localhost:5000/api/cards').then(
+            res => {
+                if (res.data && res.data.cards && res.data.cards.length) {
+                    dispatch(cardsLoaded(res.data.cards));
+                }
+            }, err => {
+                dispatch(cardsLoading(false));
+                dispatch(loadingError(err.response.data));
+                console.log(err.response);
+        });
     }
 }

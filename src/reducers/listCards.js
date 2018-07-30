@@ -1,6 +1,10 @@
 const initialState = {
     isCardsLoading: true,
-    hasError: false,
+    errorData: {
+        hasError: false,
+        errorCode: null,
+        errorMessage: null
+    },
     data: []
 };
 
@@ -23,7 +27,7 @@ export function cards(state = initialState, action) {
         case 'CARDS_LOADING_ERROR': {
             return {
                 ...state,
-                hasError: true
+                errorData: action.payload
             };
         }
 
